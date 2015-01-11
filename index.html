@@ -47,6 +47,8 @@
         <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
         <label><%- title %></label>
         <a class="destroy"></a>
+        <p>Created : <%- createdAt %></p>
+        <p>Last modified : <%- modifiedAt %></p>
     </div>
     <input class="edit" type="text" value="<%- title %>"/>
 </script>

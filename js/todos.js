@@ -17,7 +17,9 @@ $(function(){
       return {
         title: "empty todo...",
         order: Todos.nextOrder(),
-        done: false
+        done: false,
+        createdAt: null,
+        modifiedAt: null
       };
     },
 
@@ -117,10 +119,11 @@ $(function(){
     // Close the `"editing"` mode, saving changes to the todo.
     close: function() {
       var value = this.input.val();
+      var modifiedDate = new Date();
       if (!value) {
         this.clear();
       } else {
-        this.model.save({title: value});
+        this.model.save({title: value, modifiedAt: modifiedDate.toUTCString()});
         this.$el.removeClass("editing");
       }
     },
@@ -208,10 +211,11 @@ $(function(){
     // If you hit return in the main input field, create new **Todo** model,
     // persisting it to *localStorage*.
     createOnEnter: function(e) {
+      var createdDate = new Date();
       if (e.keyCode != 13) return;
       if (!this.input.val()) return;
 
-      Todos.create({title: this.input.val()});
+      Todos.create({title: this.input.val(), createdAt: createdDate.toUTCString(), modifiedAt: createdDate.toUTCString()});
       this.input.val('');
     },
 
