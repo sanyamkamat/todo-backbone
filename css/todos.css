@@ -83,6 +83,25 @@ body {
     text-decoration: line-through;
 }
 
+#todo-list .add {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    display: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: url(../img/add.png) no-repeat;
+}
+
+#todo-list li:hover .add {
+    display: block;
+}
+
+#todo-list .add:hover {
+    background-position: 0 -20px;
+}
+
 #todo-list .destroy {
     position: absolute;
     right: 5px;
