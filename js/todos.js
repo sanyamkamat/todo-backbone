@@ -143,7 +143,15 @@ $(function () {
 
         // If you hit `enter`, we're through editing the item.
         updateOnEnter: function (e) {
-            if (e.keyCode == 13) this.close();
+            var keyCode = e.keyCode;
+            if (keyCode == 13) {
+                this.close();
+            } else if ((keyCode > 64 && keyCode < 91) || (keyCode > 96 && keyCode < 123) || (keyCode > 47 && keyCode < 58) || keyCode == 32 ) {
+                // Check for only alphanumeric chars and spaces. For rest its returned false.
+                return true;
+            } else {
+                return false;
+            }
         },
 
         // Remove the item, destroy the model.
