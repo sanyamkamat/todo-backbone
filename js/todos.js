@@ -20,7 +20,7 @@ $(function () {
                 done: false,
                 createdAt: null,
                 modifiedAt: null,
-                taskInfo: null
+                taskInfo: ""
             };
         },
 
