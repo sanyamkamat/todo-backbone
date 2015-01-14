@@ -46,9 +46,9 @@
     <div class="view">
         <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
         <label><%- title %></label>
-        <a class="add"></a>
-        <a class="destroy"></a>
-        <p><textarea class="taskInfo"></textarea></p>
+        <a class="add" title="Update task info"></a>
+        <a class="destroy" title="Delete the task"></a>
+        <p><textarea class="taskInfo" placeholder="Add body here..."><%- taskInfo %></textarea></p>
         <p>Created : <%- createdAt %></p>
         <p>Last modified : <%- modifiedAt %></p>
     </div>

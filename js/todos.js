@@ -19,7 +19,8 @@ $(function () {
                 order: Todos.nextOrder(),
                 done: false,
                 createdAt: null,
-                modifiedAt: null
+                modifiedAt: null,
+                taskInfo: null
             };
         },
 
@@ -87,7 +88,9 @@ $(function () {
             "click a.add": "addInfo",
             "click a.destroy": "clear",
             "keypress .edit": "updateOnEnter",
-            "blur .edit": "close"
+            "keypress .taskInfo": "updateOnEnter",
+            "blur .edit": "close",
+            "blur .taskInfo": "close"
         },
 
         // The TodoView listens for changes to its model, re-rendering. Since there's
@@ -103,6 +106,7 @@ $(function () {
             this.$el.html(this.template(this.model.toJSON()));
             this.$el.toggleClass('done', this.model.get('done'));
             this.input = this.$('.edit');
+            this.textarea = this.$('.taskInfo');
             return this;
         },
 
@@ -117,15 +121,23 @@ $(function () {
             this.input.focus();
         },
 
+        // Open the addInfo textarea
+        addInfo: function(){
+            this.$el.addClass("editingInfo");
+            this.textarea.focus();
+        },
+
         // Close the `"editing"` mode, saving changes to the todo.
         close: function () {
             var value = this.input.val();
+            var taskInfo = this.textarea.val();
             var modifiedDate = new Date();
             if (!value) {
                 this.clear();
             } else {
-                this.model.save({title: value, modifiedAt: modifiedDate.toUTCString()});
+                this.model.save({title: value, modifiedAt: modifiedDate.toUTCString(), taskInfo: taskInfo});
                 this.$el.removeClass("editing");
+                this.$el.removeClass("editingInfo");
             }
         },
 
