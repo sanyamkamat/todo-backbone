@@ -48,11 +48,14 @@
         <label><%- title %></label>
         <a class="add" title="Update task info"></a>
         <a class="destroy" title="Delete the task"></a>
-        <p><textarea class="taskInfo" placeholder="Add body here..."><%- taskInfo %></textarea></p>
-        <p>Created : <%- createdAt %></p>
-        <p>Last modified : <%- modifiedAt %></p>
     </div>
     <input class="edit" type="text" value="<%- title %>"/>
+    <% if (taskInfo != "") { %>
+        <p class="taskDescription" title="Double click to modify">Task description<br><%= taskInfo%></p>
+    <%}%>
+    <p><textarea class="taskInfo" placeholder="Add body here..."><%- taskInfo %></textarea></p>
+    <p>Created : <%- createdAt %></p>
+    <p>Last modified : <%- modifiedAt %></p>
 </script>
 
 <script type="text/template" id="stats-template">

@@ -74,6 +74,10 @@ body {
     border-bottom: 1px solid #cccccc;
 }
 
+#todo-list li p {
+    font-size: 18px;
+}
+
 #todo-list li:last-child {
     border-bottom: none;
 }
@@ -162,6 +166,10 @@ body {
 #todo-list li.editingInfo .taskInfo {
     display: block;
     /*transition: display 1s 1s, height 2s 2s;*/
+}
+
+#todo-list li.editingInfo .taskDescription {
+    display: none;
 }
 
 #todoapp footer {

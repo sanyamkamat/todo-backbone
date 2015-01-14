@@ -85,6 +85,7 @@ $(function () {
         events: {
             "click .toggle": "toggleDone",
             "dblclick .view": "edit",
+            "dblclick .taskDescription": "addInfo",
             "click a.add": "addInfo",
             "click a.destroy": "clear",
             "keypress .edit": "updateOnEnter",
