@@ -53,7 +53,7 @@
     <% if (taskInfo !== "") { %>
         <p class="taskDescription" title="Double click to modify">Task description<br><%= taskInfo%></p>
     <%}%>
-    <p><textarea class="taskInfo" placeholder="Add body here..."><%- taskInfo %></textarea></p>
+    <p><textarea class="taskInfo" placeholder="Add body here..." maxlength="140"><%- taskInfo %></textarea></p>
     <p>Created : <%- createdAt %></p>
     <p>Last modified : <%- modifiedAt %></p>
 </script>
