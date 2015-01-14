@@ -123,7 +123,7 @@ $(function () {
         },
 
         // Open the addInfo textarea
-        addInfo: function(){
+        addInfo: function () {
             this.$el.addClass("editingInfo");
             this.textarea.focus();
         },
@@ -136,7 +136,11 @@ $(function () {
             if (!value) {
                 this.clear();
             } else {
-                this.model.save({title: value, modifiedAt: modifiedDate.toUTCString(), taskInfo: taskInfo});
+                this.model.save({
+                    title: value,
+                    modifiedAt: modifiedDate.toUTCString(),
+                    taskInfo: this.sanitize(taskInfo)
+                });
                 this.$el.removeClass("editing");
                 this.$el.removeClass("editingInfo");
             }
@@ -147,7 +151,7 @@ $(function () {
             var keyCode = e.keyCode;
             if (keyCode == 13) {
                 this.close();
-            } else if ((keyCode > 64 && keyCode < 91) || (keyCode > 96 && keyCode < 123) || (keyCode > 47 && keyCode < 58) || keyCode == 32 ) {
+            } else if ((keyCode > 64 && keyCode < 91) || (keyCode > 96 && keyCode < 123) || (keyCode > 47 && keyCode < 58) || keyCode == 32) {
                 // Check for only alphanumeric chars and spaces. For rest its returned false.
                 return true;
             } else {
@@ -158,6 +162,21 @@ $(function () {
         // Remove the item, destroy the model.
         clear: function () {
             this.model.destroy();
+        },
+
+        // Sanitize function
+        sanitize: function (taskInfo) {
+            var taskInfoArray = taskInfo.split(" ");
+            var newTaskInfo = [];
+            taskInfoArray.forEach(function (element,index,array){
+                if (element != "") {
+                    if (element.length > 30) {
+                        element = element.slice(0, 30);
+                    }
+                    newTaskInfo.push(element);
+                }
+            });
+            return newTaskInfo.join(" ");
         }
 
     });
@@ -237,7 +256,11 @@ $(function () {
             if (e.keyCode != 13) return;
             if (!this.input.val()) return;
 
-            Todos.create({title: this.input.val(), createdAt: createdDate.toUTCString(), modifiedAt: createdDate.toUTCString()});
+            Todos.create({
+                title: this.input.val(),
+                createdAt: createdDate.toUTCString(),
+                modifiedAt: createdDate.toUTCString()
+            });
             this.input.val('');
         },
 
